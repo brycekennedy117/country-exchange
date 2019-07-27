@@ -1,0 +1,49 @@
+<%= form_with(model: country, local: true) do |form| %>
+  <% if country.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(country.errors.count, "error") %> prohibited this country from being saved:</h2>
+
+      <ul>
+      <% country.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+      <%= form.label "Cities" %>
+    <%= hidden_field_tag "country[city_ids][]", nil %>
+    <% City.all.each do |city| %>
+      <label class="checkbox-inline">
+        <%= check_box_tag "country[city_ids][]", city.id, form.object.cities.include?(city) %> <%= city.name %>
+      </label>
+    <% end %>
+    <% unless City.any? %>
+      <span>It looks like there are no cities on the system click <%= link_to :here, new_city_path %> to create some!</span>
+    <% end %>
+  </div>
+
+  <div class="field">
+      <%= form.label "Continent" %>
+    <% if Continent.any? %>
+      <%= form.select :continent_id, Continent.all.collect { |c| [ c.name, c.id ] }, class: 'form-control' %>
+    <% else %>
+      <span>It looks like there are no continents on the system click <%= link_to :here, new_continent_path %> to create some!</span>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%=  form.submit class: 'form-control btn btn-success' %>
+  </div>
+  <% end %>

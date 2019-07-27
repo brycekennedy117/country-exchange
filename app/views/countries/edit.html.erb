@@ -1,0 +1,10 @@
+<% provide(:title, "Editing " + @country.name) %>
+
+<h1 class="text-center">Editing <%= link_to @country.name, @country, class: 'standard-link' %></h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <%= render 'form', country: @country %>
+    <%= link_to 'Back', countries_path, class: 'btn btn-danger' %>
+  </div>
+</main>

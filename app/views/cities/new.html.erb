@@ -1,0 +1,9 @@
+<h1 class="text-center">New City</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <%= render 'form', city: @city %>
+    <br>
+    <%= link_to 'Back', cities_path, class: 'standard-link' %>
+  </div>
+</main>

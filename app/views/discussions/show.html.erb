@@ -1,0 +1,19 @@
+<% provide(:title, @discussion.title) %>
+
+<h1 class="text-center">
+  <%= @discussion.title %> by
+  <%= link_to @discussion.user.username, user_path(@discussion.user), class: 'standard-link' %>
+</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-12" style="margin: 0 auto">
+    <%= render @discussion.posts %>
+    <br>
+  <% if logged_in? %>
+    <%= render 'posts/form' %>
+  <% else %>
+    <p>You cannot join the conversation until you have <%= link_to 'logged in', login_path, class: 'standard-link' %>.</p>
+  <% end %>
+  <%= link_to 'Back', discussions_path, class: 'btn btn-danger' %>
+  </div>
+</main>

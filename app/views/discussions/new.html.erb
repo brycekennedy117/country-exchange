@@ -1,0 +1,8 @@
+<h1 class="text-center">New Discussion</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <%= render 'form', discussion: @discussion %>
+    <%= link_to 'Back', discussions_path, class: 'btn btn-danger' %>
+  </div>
+</main>

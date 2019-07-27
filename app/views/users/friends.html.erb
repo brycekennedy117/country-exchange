@@ -1,0 +1,13 @@
+<% provide(:title, "#{@user.username}'s Friends") %>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <h1><%= @user.username %>'s Friends</h1>
+    <br>
+    <ul>
+      <% @friends.each do |friend| %>
+        <li><%= link_to friend.username, friend, class: 'standard-link' %></li>
+      <% end %>
+    </ul>
+  </div>
+</main>

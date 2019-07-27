@@ -1,0 +1,40 @@
+<% provide(:title, @user.username) %>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <h1 class="text-center"><%= @user.username %></h1>
+      <% if current_user != nil && current_user.id == @user.id %>
+        <p class="text-center"><strong>Email: </strong>
+        <%= @user.email %></p>
+      <% end %>
+      <p class="text-center"><strong>Friends: </strong>
+      <ul>
+        <% @user.friends.each do |friend| %>
+          <li><%= link_to friend.username, friend, class: 'standard-link' %></li>
+        <% end %>
+      </ul>
+      <div class="text-center">
+          <%= @user.requests[0].requester.username %>
+          <% if current_user != nil && current_user.id == @user.id %>
+            <% if @user.requests.any? %>
+              <ul>
+                <% @user.requests do |request| %>
+                  <li><%= request.requester.username %></li>
+                <% end %>
+              </ul>
+            <% end %>
+            <% if @user.received.any? %>
+              <ul>
+                <% @user.received do |received| %>
+                  <li><%= received.receiver.username %></li>
+                <% end %>
+              </ul>
+            <% end %>
+            <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
+          <% elsif current_user != nil && current_user.id != @user.id && @user.friend_id != current_user.id %>
+            <%= link_to 'Add Friend', add_friend_path(@user.id), class: 'btn btn-primary', method: :post %>
+          <% end %>
+          <%= link_to 'Back', users_path, class: 'btn btn-danger' %>
+      </div>
+  </div>
+</main>

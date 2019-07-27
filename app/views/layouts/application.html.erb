@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'layouts/head' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/header' %>
+    <div id="wrapper">
+      <%= yield %>
+    </div>
+    <div id="push"></div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<% provide(:title, "New Country") %>
+
+<h1 class="text-center">New Country</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <%= render 'form', country: @country %>
+    <br>
+    <%= link_to 'Back', countries_path, class: 'standard-link' %>
+  </div>
+</main>

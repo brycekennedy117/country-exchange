@@ -1,0 +1,21 @@
+<%= form_with(model: city, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Country:" %>
+    <%= form.select :country_id, Country.all.collect { |c| [ c.name, c.id ] } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'form-control btn btn-success' %>
+  </div>
+<% end %>

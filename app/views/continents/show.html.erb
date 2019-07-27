@@ -1,0 +1,26 @@
+<% provide(:title, @continent.name) %>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <div>
+      <h3><%= @continent.name %></h3>
+    </div>
+
+    <div>
+      <strong>Description:</strong>
+      <%= @continent.description %>
+    </div>
+
+    <div>
+      <strong>Countries:</strong>
+      <ul>
+        <% @continent.countries.each do |country| %>
+          <li><%= link_to country.name, country_path(country), class: 'standard-link' %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, edit_continent_path(@continent), class: 'btn btn-primary' %>
+    <%= link_to '<i class="fas fa-times"></i> Delete'.html_safe, continents_path, class: 'btn btn-danger' %>
+  </div>
+</main>

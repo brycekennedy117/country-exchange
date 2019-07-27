@@ -1,0 +1,29 @@
+<% provide(:title, "Countries") %>
+
+<h1 class="text-center">Countries</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <% @countries.each do |country| %>
+      <div class="card">
+        <div class="card-header">
+          <h3><%= link_to country.name, country_path(country), class: 'standard-link' %></h3>
+        </div>
+        <div class="card-body">
+          <%= country.description %>
+        </div>
+        <div class="card-footer">
+          <span>
+            <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, edit_country_path(country), class: 'btn btn-primary' %>
+            <%= link_to '<i class="fas fa-times"></i> Delete'.html_safe, country, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </span>
+        </div>
+      </div>
+      <br>
+    <% end %>
+
+    <br>
+
+    <%= link_to '<i class="fas fa-plus"></i> New Country'.html_safe, new_country_path, class: 'btn btn-primary' %>
+  </div>
+</main>

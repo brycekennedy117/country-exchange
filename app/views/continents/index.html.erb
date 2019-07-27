@@ -1,0 +1,28 @@
+<% provide(:title, "Continents") %>
+
+<h1 class="text-center">Continents</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+
+    <% @continents.each do |continent| %>
+      <div class="card">
+        <div class="card-header">
+          <h3><%= link_to continent.name, continent, class: 'standard-link' %></h3>
+        </div>
+        <div class="card-body">
+          <%= continent.description %>
+        </div>
+        <div class="card-footer">
+          <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, edit_continent_path(continent), class: 'btn btn-primary' %>
+          <%= link_to '<i class="fas fa-times"></i> Delete'.html_safe, continent, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+
+    <br>
+
+    <%= link_to '<i class="fas fa-plus"></i> New Continent'.html_safe, new_continent_path, class: 'btn btn-primary' %>
+  </div>
+</main>

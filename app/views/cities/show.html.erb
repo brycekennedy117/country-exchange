@@ -1,0 +1,26 @@
+<% provide(:title, @city.name) %>
+
+<div>
+  <h1><%= @city.name %></h1>
+</div>
+
+<br>
+
+<div>
+  <strong>Description:</strong>
+  <%= @city.description %>
+</div>
+
+<br>
+
+<% if @country!= nil %>
+  <div>
+    <strong>Country:</strong>
+    <%= link_to @country.name, country_path(@country) %>
+  </div>
+
+  <br>
+<% end %>
+
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>

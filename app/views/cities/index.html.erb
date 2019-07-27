@@ -1,0 +1,27 @@
+<% provide(:title, "Cities") %>
+
+<h1 class="text-center">Cities</h1>
+
+<main role="main" class="container">
+  <div class="jumbotron col-md-8" style="margin: 0 auto">
+    <% @cities.each do |city| %>
+      <div class="card">
+        <div class="card-header">
+          <h3><%= link_to city.name, city_path(city), class: 'standard-link' %></h3>
+        </div>
+        <div class="card-body">
+          <%= city.description %>
+        </div>
+        <div class="card-footer">
+          <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, edit_city_path(city), class: 'btn btn-primary' %>
+          <%= link_to '<i class="fas fa-times"></i> Delete'.html_safe, city, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+
+    <br>
+
+    <%= link_to '<i class="fas fa-plus"></i> New City'.html_safe, new_city_path, class: 'btn btn-primary' %>
+  </div>
+</main>

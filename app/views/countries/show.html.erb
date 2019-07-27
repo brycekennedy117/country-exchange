@@ -1,0 +1,60 @@
+<% provide(:title, @country.name) %>
+
+<br>
+
+<div class="container">
+  <h1><%= @country.name %> <small><%= link_to 'Edit', edit_country_path(@country), class: 'standard-link' %></small></h1>
+
+  <br>
+
+  <div class="description">
+    <%= @country.description %>
+  </div>
+
+  <br>
+
+  <div>
+    <strong>Cities:</strong>
+    <% unless @country.cities.any? %>
+      <span>There are currently no cities here...</span>
+    <% end %>
+    <ul>
+      <% @country.cities.each do |city| %>
+        <li><%= link_to city.name, city_path(city), class: 'standard-link' %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <br>
+
+  <div>
+    <strong>Continent:</strong>
+    <% if defined? @continent %>
+      <%= link_to @continent.name, continent_path(@continent), class: 'standard-link' %>
+    <% else %>
+      <span>There is currently no continent here...</span>
+    <% end %>
+  </div>
+
+  <br>
+
+  <div>
+    <h3><a id="comment-link" href="#comment-link" class="standard-link"><%= @country.comments.count %>
+      Comment<%= 's' if @country.comments.count > 1  %> <span id="toggle-arrow"><i class="fas fa-angle-double-down"></i></span></a></h3>
+    <div id="comments-div" style="display: none;">
+      <%= render @country.comments.where(:reply_id => nil) %>
+      <% if logged_in? %>
+        <%= render 'comments/form' %>
+      <% else %>
+        <span>You must <%= link_to :login, login_path, class: 'standard-link' %> to post a comment on <%= @country.name %>.</span>
+      <% end %>
+    </div>
+  </div>
+
+
+  <br>
+
+  <%= link_to 'Back', countries_path, class: 'btn btn-danger' %>
+</div>
+
+<br>
